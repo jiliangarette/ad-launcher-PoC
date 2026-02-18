@@ -1,0 +1,109 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #fafafa;
+  color: #222;
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+h1 { font-size: 1.5rem; font-weight: 600; }
+h2 { font-size: 1.1rem; font-weight: 600; }
+
+button {
+  background: #222;
+  color: #fff;
+  border: none;
+  padding: 0.45rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+button:hover { background: #444; }
+button:disabled { opacity: 0.5; cursor: default; }
+
+.btn-sm {
+  background: #e8e8e8;
+  color: #222;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.78rem;
+}
+.btn-sm:hover { background: #d0d0d0; }
+
+/* Stats bar */
+.stats-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.stat-box {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.stat-label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.04em; }
+.stat-value { font-size: 1.35rem; font-weight: 600; margin-top: 0.25rem; }
+
+/* Section header */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+/* Table */
+table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; overflow: hidden; }
+th { text-align: left; padding: 0.6rem 0.75rem; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid #e0e0e0; }
+td { padding: 0.6rem 0.75rem; font-size: 0.85rem; border-bottom: 1px solid #f0f0f0; }
+tr:last-child td { border-bottom: none; }
+.mono { font-family: "SF Mono", "Consolas", monospace; font-size: 0.78rem; color: #666; }
+
+/* Badges */
+.badge { padding: 0.15rem 0.5rem; border-radius: 9999px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+.badge-active { background: #d4edda; color: #155724; }
+.badge-paused { background: #e8e8e8; color: #555; }
+.badge-pending { background: #fff3cd; color: #856404; }
+.badge-error { background: #f8d7da; color: #721c24; }
+
+/* Create section */
+.create-section { display: flex; align-items: center; gap: 0.75rem; }
+.create-message { font-size: 0.8rem; color: #666; }
+
+/* Launch form */
+.launch-section { margin-bottom: 2rem; }
+.launch-form { background: #fff; border: 1px solid #e0e0e0; border-radius: 6px; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem; }
+.launch-form label { display: flex; flex-direction: column; gap: 0.2rem; }
+.launch-form label span { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.04em; }
+.launch-form input, .launch-form textarea, .launch-form select { border: 1px solid #ddd; border-radius: 4px; padding: 0.45rem 0.6rem; font-size: 0.85rem; font-family: inherit; background: #fff; }
+.launch-form input:focus, .launch-form textarea:focus, .launch-form select:focus { outline: none; border-color: #222; }
+.launch-row { display: flex; gap: 0.75rem; }
+.launch-row label { flex: 1; }
+.radio-group { display: flex; gap: 0.6rem; padding-top: 0.25rem; }
+.radio-label { flex-direction: row !important; align-items: center; gap: 0.25rem !important; font-size: 0.85rem; color: #222; cursor: pointer; }
+.radio-label input[type="radio"] { width: auto; margin: 0; }
+.launch-result { margin-top: 0.75rem; background: #d4edda; border-radius: 6px; padding: 1rem; }
+.launch-result p { font-size: 0.85rem; margin-bottom: 0.5rem; }
+.launch-result table { background: transparent; border: none; }
+.launch-result td { border: none; padding: 0.2rem 0.75rem 0.2rem 0; font-size: 0.82rem; }
+
+/* Error */
+.error { color: #c0392b; font-size: 0.85rem; margin-bottom: 1rem; }
+.muted { color: #999; font-size: 0.85rem; }

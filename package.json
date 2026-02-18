@@ -1,0 +1,38 @@
+{
+  "name": "ads-launcher",
+  "version": "0.1.0",
+  "description": "CLI tool to launch and manage Meta (Facebook) ads via Graph API",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "server": "ts-node server/index.ts",
+    "client": "cd client && npm run dev",
+    "dev:ui": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [
+    "meta",
+    "facebook",
+    "ads",
+    "graph-api",
+    "cli"
+  ],
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "axios": "^1.7.0",
+    "commander": "^12.1.0",
+    "concurrently": "^9.2.1",
+    "cors": "^2.8.6",
+    "dotenv": "^16.4.0",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.5.0"
+  }
+}
