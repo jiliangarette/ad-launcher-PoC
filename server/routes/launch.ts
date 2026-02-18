@@ -3,6 +3,7 @@ import { CampaignManager } from "../../src/campaigns";
 import { AdSetManager } from "../../src/adsets";
 import { CreativeManager } from "../../src/creatives";
 import { AdManager } from "../../src/ads";
+import type { CampaignObjective } from "../../src/types";
 
 interface LaunchDeps {
   campaigns: CampaignManager;
@@ -24,7 +25,17 @@ export function launchRoutes(deps: LaunchDeps): Router {
   const router = Router();
 
   router.post("/", async (req, res) => {
-    const { headline, body, imageUrl, link, country, ageMin, ageMax, dailyBudget, campaignName, ctaType, linkDescription, gender } = req.body;
+    const {
+      // Campaign
+      campaignName, objective, specialAdCategories, bidStrategy,
+      // Ad Set
+      dailyBudget, optimizationGoal, billingEvent, destinationType, bidAmount,
+      startDate, endDate,
+      // Targeting
+      country, ageMin, ageMax, gender,
+      // Creative
+      headline, body, imageUrl, link, ctaType, linkDescription,
+    } = req.body;
 
     if (!headline || !body || !link || !dailyBudget) {
       return res.status(400).json({ error: "headline, body, link, and dailyBudget are required" });
@@ -32,16 +43,23 @@ export function launchRoutes(deps: LaunchDeps): Router {
 
     const timestamp = new Date().toISOString().slice(0, 16);
     const budgetCents = String(Math.round(Number(dailyBudget) * 100));
+    const bidCents = bidAmount ? String(Math.round(Number(bidAmount))) : "200";
     let step = "";
+
+    // Resolve special_ad_categories
+    const categories = specialAdCategories && specialAdCategories !== "NONE"
+      ? [specialAdCategories]
+      : ["NONE"];
 
     try {
       // Step 1: Create Campaign
       step = "Campaign";
       const campaignId = await deps.campaigns.create({
         name: campaignName || `Ad Launch ${timestamp}`,
-        objective: "OUTCOME_TRAFFIC",
+        objective: (objective || "OUTCOME_TRAFFIC") as CampaignObjective,
         status: "PAUSED",
-        special_ad_categories: ["NONE"],
+        special_ad_categories: categories,
+        bid_strategy: bidStrategy || undefined,
       });
 
       // Step 2: Create Ad Set
@@ -57,11 +75,13 @@ export function launchRoutes(deps: LaunchDeps): Router {
           ...(gender && gender !== "all" ? { genders: gender === "male" ? [1] : [2] } : {}),
           targeting_automation: { advantage_audience: 0 },
         },
-        optimization_goal: "LINK_CLICKS",
-        billing_event: "IMPRESSIONS",
-        destination_type: "WEBSITE",
-        bid_amount: "200",
+        optimization_goal: optimizationGoal || "LINK_CLICKS",
+        billing_event: billingEvent || "IMPRESSIONS",
+        destination_type: destinationType || "WEBSITE",
+        bid_amount: bidCents,
         status: "PAUSED",
+        start_time: startDate || undefined,
+        end_time: endDate || undefined,
       });
 
       // Step 3: Create Ad Creative

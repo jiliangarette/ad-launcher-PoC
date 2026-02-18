@@ -50,18 +50,31 @@ export async function fetchAccountStats(): Promise<AccountStats | null> {
 }
 
 export interface LaunchAdParams {
+  // Campaign
+  campaignName?: string;
+  objective: string;
+  specialAdCategories: string;
+  bidStrategy: string;
+  // Ad Set
+  dailyBudget: number;
+  optimizationGoal: string;
+  billingEvent: string;
+  destinationType: string;
+  bidAmount: number;
+  startDate?: string;
+  endDate?: string;
+  // Targeting
+  country: string;
+  ageMin: number;
+  ageMax: number;
+  gender?: string;
+  // Creative
   headline: string;
   body: string;
   imageUrl: string;
   link: string;
-  country: string;
-  ageMin: number;
-  ageMax: number;
-  dailyBudget: number;
-  campaignName?: string;
   ctaType?: string;
   linkDescription?: string;
-  gender?: string;
 }
 
 export interface LaunchAdResult {

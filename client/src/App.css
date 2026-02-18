@@ -124,10 +124,12 @@ tr:last-child td { border-bottom: none; }
 .btn-back { background: #e8e8e8; color: #222; }
 .btn-back:hover { background: #d0d0d0; }
 
-/* Review table */
-.review-table { margin-bottom: 0.25rem; }
-.review-table td { vertical-align: top; }
-.review-label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.03em; width: 100px; }
+/* Review */
+.review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.review-group h4 { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: #555; margin-bottom: 0.25rem; }
+.review-table { margin-bottom: 0; }
+.review-table td { vertical-align: top; padding: 0.3rem 0.6rem; }
+.review-label { font-size: 0.72rem; color: #888; text-transform: uppercase; letter-spacing: 0.03em; width: 90px; white-space: nowrap; }
 
 /* Error */
 .error { color: #c0392b; font-size: 0.85rem; margin-bottom: 1rem; }
