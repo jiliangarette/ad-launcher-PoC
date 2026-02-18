@@ -84,6 +84,30 @@ export interface LaunchAdResult {
   adId: string;
 }
 
+export interface PreviewParams {
+  headline: string;
+  body: string;
+  link: string;
+  imageUrl?: string;
+  linkDescription?: string;
+  ctaType?: string;
+  adFormat?: string;
+}
+
+export async function fetchAdPreview(params: PreviewParams): Promise<string> {
+  const res = await fetch(`${BASE}/preview`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(params),
+  });
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error || "Failed to generate preview");
+  }
+  const data = await res.json();
+  return data.html;
+}
+
 export async function launchAd(params: LaunchAdParams): Promise<LaunchAdResult> {
   const res = await fetch(`${BASE}/launch`, {
     method: "POST",

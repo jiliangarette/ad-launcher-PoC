@@ -467,6 +467,7 @@ export function LaunchForm({ onLaunched }: Props) {
                 linkDescription={linkDescription}
                 link={link}
                 ctaLabel={ctaLabel}
+                ctaType={ctaType}
               />
             </div>
 

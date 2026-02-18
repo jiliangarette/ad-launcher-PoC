@@ -573,6 +573,65 @@ tr:hover td { background: #fafafa; }
   transform: none;
 }
 
+/* ── Facebook real preview ── */
+
+.fb-preview-container {
+  background: #fff;
+  border: 1px solid #e5e5ea;
+  border-radius: 12px;
+  overflow: hidden;
+  min-height: 200px;
+}
+.fb-preview-loading {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: #8e8e93;
+  font-size: 0.88rem;
+}
+.fb-preview-error {
+  padding: 1.25rem;
+  color: #c0392b;
+  font-size: 0.85rem;
+  background: #fde8e8;
+  border-radius: 12px;
+}
+.fb-preview-frame {
+  width: 100%;
+  overflow: hidden;
+}
+.fb-preview-frame iframe {
+  width: 100% !important;
+  border: none !important;
+  max-width: 100%;
+}
+
+/* Preview controls */
+.ad-preview-controls {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.ad-preview-fb-btn {
+  background: #1877f2 !important;
+  color: #fff !important;
+}
+.ad-preview-fb-btn:hover {
+  background: #1565c0 !important;
+}
+.ad-preview-format-select {
+  height: 40px;
+  border: 1.5px solid #d1d1d6;
+  border-radius: 12px;
+  padding: 0 0.75rem;
+  font-size: 0.82rem;
+  font-family: inherit;
+  background: #fff;
+  color: #1d1d1f;
+  flex: 1;
+}
+
 /* ── Error / muted ── */
 
 .error {

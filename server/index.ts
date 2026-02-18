@@ -10,6 +10,7 @@ import { InsightsManager } from "../src/insights";
 import { campaignRoutes } from "./routes/campaigns";
 import { insightRoutes } from "./routes/insights";
 import { launchRoutes } from "./routes/launch";
+import { previewRoutes } from "./routes/preview";
 
 const config = loadConfig();
 const client = new MetaClient(config);
@@ -35,6 +36,11 @@ app.use("/api/launch", launchRoutes({
   adSets: adSetManager,
   creatives: creativeManager,
   ads: adManager,
+  pageId: config.pageId,
+}));
+
+app.use("/api/preview", previewRoutes({
+  client,
   pageId: config.pageId,
 }));
 
