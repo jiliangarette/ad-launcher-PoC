@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { launchAd } from "../api";
 import type { LaunchAdResult } from "../api";
+import { AdPreview } from "./AdPreview";
 
 interface Props {
   onLaunched: () => void;
@@ -421,39 +422,52 @@ export function LaunchForm({ onLaunched }: Props) {
             <h3 className="step-title">Ad Creative</h3>
             <p className="step-desc">Design what your audience will see.</p>
 
-            <label>
-              <span>Image URL</span>
-              <input type="url" value={imageUrl} onChange={e => setImageUrl(e.target.value)} placeholder="https://..." />
-            </label>
+            <div className="creative-layout">
+              <div className="creative-fields">
+                <label>
+                  <span>Image URL</span>
+                  <input type="url" value={imageUrl} onChange={e => setImageUrl(e.target.value)} placeholder="https://..." />
+                </label>
 
-            <label>
-              <span>Headline</span>
-              <input type="text" value={headline} onChange={e => setHeadline(e.target.value)} placeholder="e.g. Best Coffee Bean in Town" />
-            </label>
+                <label>
+                  <span>Headline</span>
+                  <input type="text" value={headline} onChange={e => setHeadline(e.target.value)} placeholder="e.g. Best Coffee Bean in Town" />
+                </label>
 
-            <label>
-              <span>Link description</span>
-              <input type="text" value={linkDescription} onChange={e => setLinkDescription(e.target.value)} placeholder="Subtitle text under the headline" />
-            </label>
+                <label>
+                  <span>Link description</span>
+                  <input type="text" value={linkDescription} onChange={e => setLinkDescription(e.target.value)} placeholder="Subtitle text under the headline" />
+                </label>
 
-            <label>
-              <span>Body text</span>
-              <textarea value={body} onChange={e => setBody(e.target.value)} rows={3} placeholder="Main ad copy..." />
-            </label>
+                <label>
+                  <span>Body text</span>
+                  <textarea value={body} onChange={e => setBody(e.target.value)} rows={3} placeholder="Main ad copy..." />
+                </label>
 
-            <div className="launch-row">
-              <label style={{ flex: 2 }}>
-                <span>Destination link</span>
-                <input type="url" value={link} onChange={e => setLink(e.target.value)} placeholder="https://yoursite.com" />
-              </label>
-              <label>
-                <span>CTA button</span>
-                <select value={ctaType} onChange={e => setCtaType(e.target.value)}>
-                  {CTA_OPTIONS.map(c => (
-                    <option key={c.value} value={c.value}>{c.label}</option>
-                  ))}
-                </select>
-              </label>
+                <div className="launch-row">
+                  <label style={{ flex: 2 }}>
+                    <span>Destination link</span>
+                    <input type="url" value={link} onChange={e => setLink(e.target.value)} placeholder="https://yoursite.com" />
+                  </label>
+                  <label>
+                    <span>CTA button</span>
+                    <select value={ctaType} onChange={e => setCtaType(e.target.value)}>
+                      {CTA_OPTIONS.map(c => (
+                        <option key={c.value} value={c.value}>{c.label}</option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+              </div>
+
+              <AdPreview
+                body={body}
+                imageUrl={imageUrl}
+                headline={headline}
+                linkDescription={linkDescription}
+                link={link}
+                ctaLabel={ctaLabel}
+              />
             </div>
 
             <div className="step-nav">
@@ -521,6 +535,15 @@ export function LaunchForm({ onLaunched }: Props) {
                 </table>
               </div>
             </div>
+
+            <AdPreview
+              body={body}
+              imageUrl={imageUrl}
+              headline={headline}
+              linkDescription={linkDescription}
+              link={link}
+              ctaLabel={ctaLabel}
+            />
 
             {error && <p className="error">{error}</p>}
 
